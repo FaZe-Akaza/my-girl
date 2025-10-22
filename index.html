@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Wambui!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Happy Birthday Wambui! 🎉</h1>
+            <p class="subtitle">A special surprise made just for you</p>
+        </header>
+        
+        <div class="message">
+            <p>My dearest Wambui, on this special day, I want to remind you how incredibly amazing you are! You bring so much joy and happiness into my life, and I'm so grateful to have you. I hope this little surprise brings a smile to your beautiful face! ❤️</p>
+        </div>
+        
+        <h2 class="section-title">Open Your Gifts</h2>
+        <div class="gift-container">
+            <div class="gift-box" data-gift="1">
+                <i class="fas fa-gift"></i>
+                <span>Gift 1</span>
+            </div>
+            <div class="gift-box" data-gift="2">
+                <i class="fas fa-music"></i>
+                <span>Gift 2</span>
+            </div>
+            <div class="gift-box" data-gift="3">
+                <i class="fas fa-birthday-cake"></i>
+                <span>Gift 3</span>
+            </div>
+            <div class="gift-box" data-gift="4">
+                <i class="fas fa-heart"></i>
+                <span>Gift 4</span>
+            </div>
+        </div>
+        
+        <h2 class="section-title">Play Games</h2>
+        <div class="games-container">
+            <div class="game-card" data-game="memory">
+                <i class="fas fa-brain"></i>
+                <h3>Memory Game</h3>
+                <p>Match the pairs</p>
+            </div>
+            <div class="game-card" data-game="love">
+                <i class="fas fa-heartbeat"></i>
+                <h3>Love Meter</h3>
+                <p>Measure the love</p>
+            </div>
+            <div class="game-card" data-game="quiz">
+                <i class="fas fa-question-circle"></i>
+                <h3>Birthday Quiz</h3>
+                <p>Test your knowledge</p>
+            </div>
+            <div class="game-card" data-game="message">
+                <i class="fas fa-envelope"></i>
+                <h3>Special Message</h3>
+                <p>Heartfelt wishes</p>
+            </div>
+        </div>
+        
+        <div class="final-message">
+            <p>Wambui, you're the most wonderful person I know. Your smile lights up my world, your laughter is my favorite sound, and your heart is the most beautiful thing about you. I hope your birthday is as incredible as you are! Here's to many more celebrations together! 🥳🎂🎁</p>
+            <p class="signature">With all my love,<br>Your special someone ❤️</p>
+        </div>
+    </div>
+    
+    <!-- Gift Modals -->
+    <div id="gift1" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Virtual Flowers 💐</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>For the most beautiful flower in my life! These virtual flowers will never wilt, just like my love for you. I promise to get you real ones soon too! 🌹</p>
+                <div class="flowers-display">🌷🌸🌺🌻🌼</div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gift2" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Personalized Song 🎵</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Here's a special birthday song for you, Wambui!</p>
+                <div class="song-lyrics">
+                    "It's your birthday, Wambui<br>
+                    Time to celebrate and feel so happy<br>
+                    You're the reason for the season<br>
+                    You're the one that makes life worth living<br><br>
+                    
+                    Blow out the candles, make a wish<br>
+                    Hope it comes true with a loving kiss<br>
+                    You're growing older, but you're still so fine<br>
+                    Wambui, you'll always be mine<br><br>
+                    
+                    Happy birthday to you, my dear<br>
+                    Wishing you joy throughout the year<br>
+                    May all your dreams and wishes come true<br>
+                    'Cause no one deserves it more than you!"
+                </div>
+                <div class="audio-player">
+                    <div class="audio-controls">
+                        <button class="audio-btn" id="playBtn">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="audio-btn" id="pauseBtn">
+                            <i class="fas fa-pause"></i>
+                        </button>
+                        <button class="audio-btn" id="stopBtn">
+                            <i class="fas fa-stop"></i>
+                        </button>
+                    </div>
+                    <p id="audioStatus">Click play to listen to your song!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gift3" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Virtual Cake 🎂</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Make a wish and blow out the candles! I hope all your birthday wishes come true. This virtual cake has zero calories but all the sweetness! 😊</p>
+                
+                <div class="cake-container">
+                    <div class="cake">
+                        <div class="cake-base"></div>
+                        <div class="cake-top"></div>
+                        <div class="candles">
+                            <div class="candle">
+                                <div class="flame" id="flame1"></div>
+                            </div>
+                            <div class="candle">
+                                <div class="flame" id="flame2"></div>
+                            </div>
+                            <div class="candle">
+                                <div class="flame" id="flame3"></div>
+                            </div>
+                            <div class="candle">
+                                <div class="flame" id="flame4"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="cake-message" id="cakeMessage">Make a wish and blow out the candles!</div>
+                </div>
+                
+                <div class="action-container">
+                    <button class="action-btn" id="blowCandlesBtn"><i class="fas fa-wind"></i> Blow Candles</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="gift4" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Promise Coupon 📝</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>This coupon is good for:</p>
+                <ul class="coupon-list">
+                    <li>One romantic dinner date</li>
+                    <li>One movie night of your choice</li>
+                    <li>One back massage</li>
+                    <li>Unlimited hugs and kisses</li>
+                </ul>
+                <p>Redeemable anytime! 💖</p>
+                <div class="action-container">
+                    <button class="action-btn" id="redeemCouponBtn"><i class="fas fa-ticket-alt"></i> Redeem Now</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Game Modals -->
+    <div id="memoryGame" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Memory Game</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>Match all the pairs as quickly as you can!</p>
+                <div class="memory-game" id="memoryBoard">
+                    <!-- Cards will be generated by JavaScript -->
+                </div>
+                <div class="action-container">
+                    <button class="action-btn" id="restartMemoryBtn"><i class="fas fa-redo"></i> Restart Game</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="loveGame" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Love Meter</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <p>How much is Wambui loved today?</p>
+                <div class="love-meter-container">
+                    <div class="love-meter">
+                        <div class="love-fill" id="loveFill"></div>
+                    </div>
+                    <div class="love-text" id="loveText">Click the button to measure the love!</div>
+                </div>
+                <div class="action-container">
+                    <button class="action-btn" id="measureLoveBtn"><i class="fas fa-heart"></i> Measure Love</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="quizGame" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Birthday Quiz</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="quiz-container">
+                    <div class="quiz-question" id="quizQuestion">How awesome is Wambui?</div>
+                    <div class="quiz-options" id="quizOptions">
+                        <!-- Options will be generated by JavaScript -->
+                    </div>
+                    <div class="quiz-result" id="quizResult"></div>
+                </div>
+                <div class="action-container">
+                    <button class="action-btn" id="restartQuizBtn"><i class="fas fa-redo"></i> Restart Quiz</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="messageGame" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Special Message</h2>
+                <button class="close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div class="song-lyrics">
+                    To the most amazing Wambui,<br><br>
+                    
+                    On your special day, I want you to know how much you mean to me. Your smile brightens my darkest days, your laughter is my favorite melody, and your love is the greatest gift I've ever received.<br><br>
+                    
+                    May this year bring you endless joy, success in all your endeavors, and the fulfillment of your heart's desires. You deserve all the happiness in the world and more.<br><br>
+                    
+                    Happy Birthday, my love! 🎉❤️🎂
+                </div>
+                <div class="celebration-icons">💖🎁🎈</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
