@@ -14,22 +14,98 @@
         }
 
         body {
-            background-color: #0f0f0f;
+            background-color: #0a0a0a;
             color: #e0e0e0;
             line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Background Effects */
+        .bg-effects {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .gradient-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.15;
+        }
+
+        .orb-1 {
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(45deg, #4a9eff, #9d4eff);
+            top: -100px;
+            left: -100px;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .orb-2 {
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(45deg, #ff6b6b, #ffa94d);
+            bottom: -50px;
+            right: 20%;
+            animation: float 12s ease-in-out infinite reverse;
+        }
+
+        .orb-3 {
+            width: 250px;
+            height: 250px;
+            background: linear-gradient(45deg, #47a248, #38b2ac);
+            top: 40%;
+            left: 70%;
+            animation: float 18s ease-in-out infinite;
+        }
+
+        .grid-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(20px, -20px) rotate(180deg); }
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 40px 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .left-column, .right-column {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         header {
-            padding: 60px 0 40px;
+            grid-column: 1 / -1;
             text-align: center;
+            padding: 40px 0;
             border-bottom: 1px solid #2a2a2a;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
         }
 
         .profile-img {
@@ -48,6 +124,10 @@
             margin-bottom: 10px;
             font-weight: 600;
             color: #ffffff;
+            background: linear-gradient(45deg, #ffffff, #4a9eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .tagline {
@@ -66,51 +146,64 @@
         .contact-links a {
             color: #b0b0b0;
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid #2a2a2a;
         }
 
         .contact-links a:hover {
             color: #4a9eff;
+            border-color: #4a9eff;
+            transform: translateY(-2px);
         }
 
         section {
-            margin-bottom: 60px;
+            background: rgba(26, 26, 26, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #2a2a2a;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
         }
 
         h2 {
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #2a2a2a;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
             font-weight: 500;
             color: #ffffff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 i {
+            color: #4a9eff;
         }
 
         .about-content {
             font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: center;
             color: #c0c0c0;
+            line-height: 1.7;
         }
 
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            grid-template-columns: 1fr;
             gap: 20px;
         }
 
         .skill-category {
-            background: #1a1a1a;
+            background: rgba(42, 42, 42, 0.5);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-            border: 1px solid #2a2a2a;
+            border: 1px solid #333;
         }
 
         .skill-category h3 {
             margin-bottom: 15px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
             color: #ffffff;
         }
@@ -126,6 +219,11 @@
             flex-direction: column;
             align-items: center;
             width: 70px;
+            transition: transform 0.3s;
+        }
+
+        .skill-icon:hover {
+            transform: translateY(-5px);
         }
 
         .icon-badge {
@@ -138,7 +236,13 @@
             font-size: 24px;
             margin-bottom: 5px;
             color: white;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            transition: all 0.3s;
+        }
+
+        .skill-icon:hover .icon-badge {
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+            transform: scale(1.1);
         }
 
         .icon-name {
@@ -149,33 +253,33 @@
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 25px;
         }
 
         .project-card {
-            background: #1a1a1a;
-            border-radius: 8px;
+            background: rgba(42, 42, 42, 0.5);
+            border-radius: 10px;
             overflow: hidden;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
-            border: 1px solid #2a2a2a;
+            transition: all 0.3s;
+            border: 1px solid #333;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: #3a3a3a;
+            border-color: #4a4a4a;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
         .project-img {
             width: 100%;
-            height: 180px;
-            background-color: #2a2a2a;
+            height: 140px;
+            background: linear-gradient(45deg, #2a2a2a, #333);
             display: flex;
             align-items: center;
             justify-content: center;
             color: #666;
-            font-size: 3rem;
+            font-size: 2.5rem;
         }
 
         .project-content {
@@ -183,7 +287,7 @@
         }
 
         .project-title {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin-bottom: 10px;
             font-weight: 500;
             color: #ffffff;
@@ -192,6 +296,8 @@
         .project-description {
             color: #a0a0a0;
             margin-bottom: 15px;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .project-tech {
@@ -202,11 +308,12 @@
         }
 
         .tech-tag {
-            background: #2a2a2a;
-            padding: 4px 10px;
+            background: rgba(74, 158, 255, 0.1);
+            padding: 4px 12px;
             border-radius: 20px;
-            font-size: 0.85rem;
-            color: #c0c0c0;
+            font-size: 0.8rem;
+            color: #4a9eff;
+            border: 1px solid rgba(74, 158, 255, 0.2);
         }
 
         .project-links {
@@ -221,25 +328,36 @@
             display: flex;
             align-items: center;
             gap: 5px;
+            transition: all 0.3s;
+        }
+
+        .project-links a:hover {
+            color: #ffffff;
+            transform: translateX(3px);
         }
 
         .contact-info {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: 1fr;
+            gap: 15px;
         }
 
         .contact-item {
-            background: #1a1a1a;
+            background: rgba(42, 42, 42, 0.5);
             padding: 20px;
             border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
             text-align: center;
-            border: 1px solid #2a2a2a;
+            border: 1px solid #333;
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: #4a9eff;
+            transform: translateY(-3px);
         }
 
         .contact-icon {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
             color: #4a9eff;
         }
@@ -247,13 +365,16 @@
         .contact-item h3 {
             color: #ffffff;
             margin-bottom: 5px;
+            font-size: 1.1rem;
         }
 
         .contact-item p {
             color: #a0a0a0;
+            font-size: 0.9rem;
         }
 
         footer {
+            grid-column: 1 / -1;
             text-align: center;
             padding: 30px 0;
             margin-top: 40px;
@@ -281,7 +402,16 @@
         .aws-icon { background: linear-gradient(135deg, #ff9900, #e68a00); }
         .jest-icon { background: linear-gradient(135deg, #c21325, #a10f1f); }
 
-        @media (max-width: 768px) {
+        @media (max-width: 968px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .left-column, .right-column {
+                gap: 30px;
+            }
+            
             h1 {
                 font-size: 2rem;
             }
@@ -292,6 +422,7 @@
             
             .contact-links {
                 flex-direction: column;
+                align-items: center;
                 gap: 10px;
             }
             
@@ -302,6 +433,14 @@
     </style>
 </head>
 <body>
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="grid-pattern"></div>
+    </div>
+
     <div class="container">
         <header>
             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=200&h=200&q=80&crop=face" alt="Michael Kamweru" class="profile-img">
@@ -315,236 +454,221 @@
             </div>
         </header>
 
-        <section id="about">
-            <h2>About</h2>
-            <div class="about-content">
-                <p>Software engineer with experience building web applications and systems. Focused on creating efficient, maintainable solutions using modern technologies.</p>
-            </div>
-        </section>
+        <div class="left-column">
+            <section id="about">
+                <h2><i class="fas fa-user"></i> About</h2>
+                <div class="about-content">
+                    <p>Software engineer with experience building web applications and systems. Focused on creating efficient, maintainable solutions using modern technologies.</p>
+                </div>
+            </section>
 
-        <section id="skills">
-            <h2>Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <div class="skill-icons">
-                        <div class="skill-icon">
-                            <div class="icon-badge js-icon">
-                                <i class="fab fa-js"></i>
+            <section id="skills">
+                <h2><i class="fas fa-code"></i> Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Languages</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <div class="icon-badge js-icon">
+                                    <i class="fab fa-js"></i>
+                                </div>
+                                <span class="icon-name">JavaScript</span>
                             </div>
-                            <span class="icon-name">JavaScript</span>
+                            <div class="skill-icon">
+                                <div class="icon-badge ts-icon">
+                                    <i class="fab fa-js-square"></i>
+                                </div>
+                                <span class="icon-name">TypeScript</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge python-icon">
+                                    <i class="fab fa-python"></i>
+                                </div>
+                                <span class="icon-name">Python</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge java-icon">
+                                    <i class="fab fa-java"></i>
+                                </div>
+                                <span class="icon-name">Java</span>
+                            </div>
                         </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge ts-icon">
-                                <i class="fab fa-js-square"></i>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Frontend</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <div class="icon-badge react-icon">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <span class="icon-name">React</span>
                             </div>
-                            <span class="icon-name">TypeScript</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge python-icon">
-                                <i class="fab fa-python"></i>
+                            <div class="skill-icon">
+                                <div class="icon-badge nextjs-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <span class="icon-name">Next.js</span>
                             </div>
-                            <span class="icon-name">Python</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge java-icon">
-                                <i class="fab fa-java"></i>
+                            <div class="skill-icon">
+                                <div class="icon-badge html-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <span class="icon-name">HTML5</span>
                             </div>
-                            <span class="icon-name">Java</span>
+                            <div class="skill-icon">
+                                <div class="icon-badge css-icon">
+                                    <i class="fab fa-css3-alt"></i>
+                                </div>
+                                <span class="icon-name">CSS3</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <div class="skill-icons">
-                        <div class="skill-icon">
-                            <div class="icon-badge react-icon">
-                                <i class="fab fa-react"></i>
-                            </div>
-                            <span class="icon-name">React</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge nextjs-icon">
-                                <i class="fas fa-bolt"></i>
-                            </div>
-                            <span class="icon-name">Next.js</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge html-icon">
-                                <i class="fab fa-html5"></i>
-                            </div>
-                            <span class="icon-name">HTML5</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge css-icon">
-                                <i class="fab fa-css3-alt"></i>
-                            </div>
-                            <span class="icon-name">CSS3</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge tailwind-icon">
-                                <i class="fas fa-palette"></i>
-                            </div>
-                            <span class="icon-name">Tailwind</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <div class="skill-icons">
-                        <div class="skill-icon">
-                            <div class="icon-badge node-icon">
-                                <i class="fab fa-node-js"></i>
-                            </div>
-                            <span class="icon-name">Node.js</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge express-icon">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <span class="icon-name">Express</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge postgresql-icon">
-                                <i class="fas fa-database"></i>
-                            </div>
-                            <span class="icon-name">PostgreSQL</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge mongodb-icon">
-                                <i class="fas fa-leaf"></i>
-                            </div>
-                            <span class="icon-name">MongoDB</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools</h3>
-                    <div class="skill-icons">
-                        <div class="skill-icon">
-                            <div class="icon-badge git-icon">
-                                <i class="fab fa-git-alt"></i>
-                            </div>
-                            <span class="icon-name">Git</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge docker-icon">
-                                <i class="fab fa-docker"></i>
-                            </div>
-                            <span class="icon-name">Docker</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge aws-icon">
-                                <i class="fab fa-aws"></i>
-                            </div>
-                            <span class="icon-name">AWS</span>
-                        </div>
-                        <div class="skill-icon">
-                            <div class="icon-badge jest-icon">
-                                <i class="fas fa-vial"></i>
-                            </div>
-                            <span class="icon-name">Jest</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
-        <section id="projects">
-            <h2>Projects</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-img">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">E-Commerce Platform</h3>
-                        <p class="project-description">Full-stack e-commerce solution with user authentication and payment processing.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
+        <div class="right-column">
+            <section id="projects">
+                <h2><i class="fas fa-briefcase"></i> Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-shopping-cart"></i>
                         </div>
-                        <div class="project-links">
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                        <div class="project-content">
+                            <h3 class="project-title">E-Commerce Platform</h3>
+                            <p class="project-description">Full-stack e-commerce solution with user authentication and payment processing.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">React</span>
+                                <span class="tech-tag">Node.js</span>
+                                <span class="tech-tag">MongoDB</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="project-card">
-                    <div class="project-img">
-                        <i class="fas fa-tasks"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Task Management App</h3>
-                        <p class="project-description">Collaborative task management tool with real-time updates.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Next.js</span>
-                            <span class="tech-tag">Socket.io</span>
-                            <span class="tech-tag">PostgreSQL</span>
+                    <div class="project-card">
+                        <div class="project-img">
+                            <i class="fas fa-tasks"></i>
                         </div>
-                        <div class="project-links">
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                        <div class="project-content">
+                            <h3 class="project-title">Task Management App</h3>
+                            <p class="project-description">Collaborative task management tool with real-time updates.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">Socket.io</span>
+                                <span class="tech-tag">PostgreSQL</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                                <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="project-card">
-                    <div class="project-img">
-                        <i class="fas fa-cloud-sun"></i>
-                    </div>
-                    <div class="project-content">
-                        <h3 class="project-title">Weather Dashboard</h3>
-                        <p class="project-description">Responsive weather application with forecasts and location search.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Weather API</span>
-                            <span class="tech-tag">Chart.js</span>
+            <section id="skills-continued">
+                <h2><i class="fas fa-cogs"></i> Tools & Backend</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Backend</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <div class="icon-badge node-icon">
+                                    <i class="fab fa-node-js"></i>
+                                </div>
+                                <span class="icon-name">Node.js</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge express-icon">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <span class="icon-name">Express</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge postgresql-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <span class="icon-name">PostgreSQL</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge mongodb-icon">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <span class="icon-name">MongoDB</span>
+                            </div>
                         </div>
-                        <div class="project-links">
-                            <a href="#"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                            <a href="#"><i class="fab fa-github"></i> Source Code</a>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Tools</h3>
+                        <div class="skill-icons">
+                            <div class="skill-icon">
+                                <div class="icon-badge git-icon">
+                                    <i class="fab fa-git-alt"></i>
+                                </div>
+                                <span class="icon-name">Git</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge docker-icon">
+                                    <i class="fab fa-docker"></i>
+                                </div>
+                                <span class="icon-name">Docker</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge aws-icon">
+                                    <i class="fab fa-aws"></i>
+                                </div>
+                                <span class="icon-name">AWS</span>
+                            </div>
+                            <div class="skill-icon">
+                                <div class="icon-badge jest-icon">
+                                    <i class="fas fa-vial"></i>
+                                </div>
+                                <span class="icon-name">Jest</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <section id="contact">
-            <h2>Contact</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-envelope"></i>
+            <section id="contact">
+                <h2><i class="fas fa-envelope"></i> Contact</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email</h3>
+                        <p>michael@example.com</p>
                     </div>
-                    <h3>Email</h3>
-                    <p>michael@example.com</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fas fa-phone"></i>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <h3>Phone</h3>
+                        <p>+1 (234) 567-890</p>
                     </div>
-                    <h3>Phone</h3>
-                    <p>+1 (234) 567-890</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-linkedin"></i>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <h3>LinkedIn</h3>
+                        <p>linkedin.com/in/michaelkamweru</p>
                     </div>
-                    <h3>LinkedIn</h3>
-                    <p>linkedin.com/in/michaelkamweru</p>
-                </div>
-                <div class="contact-item">
-                    <div class="contact-icon">
-                        <i class="fab fa-github"></i>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <h3>GitHub</h3>
+                        <p>github.com/michaelkamweru</p>
                     </div>
-                    <h3>GitHub</h3>
-                    <p>github.com/michaelkamweru</p>
                 </div>
-            </div>
-        </section>
+            </section>
+        </div>
 
         <footer>
             <p>&copy; 2023 Michael Kamweru. All rights reserved.</p>
