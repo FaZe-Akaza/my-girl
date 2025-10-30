@@ -110,21 +110,36 @@
             font-weight: 500;
         }
 
-        .skill-list {
-            list-style: none;
+        .skill-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
-        .skill-list li {
-            margin-bottom: 8px;
-            padding-left: 15px;
-            position: relative;
+        .skill-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 70px;
         }
 
-        .skill-list li:before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: #2c5aa0;
+        .icon-badge {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 5px;
+            color: white;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        .icon-name {
+            font-size: 0.75rem;
+            text-align: center;
+            color: #666;
         }
 
         .projects-grid {
@@ -229,6 +244,25 @@
             font-size: 0.9rem;
         }
 
+        /* Skill icon colors */
+        .js-icon { background: linear-gradient(135deg, #f7df1e, #d4bb03); }
+        .ts-icon { background: linear-gradient(135deg, #3178c6, #235a97); }
+        .python-icon { background: linear-gradient(135deg, #3776ab, #2d5f8a); }
+        .java-icon { background: linear-gradient(135deg, #ed8b00, #ca7700); }
+        .react-icon { background: linear-gradient(135deg, #61dafb, #21a4c4); }
+        .nextjs-icon { background: linear-gradient(135deg, #000000, #333333); }
+        .html-icon { background: linear-gradient(135deg, #e34f26, #c13d1c); }
+        .css-icon { background: linear-gradient(135deg, #1572b6, #0f5a95); }
+        .tailwind-icon { background: linear-gradient(135deg, #38b2ac, #2c9a94); }
+        .node-icon { background: linear-gradient(135deg, #339933, #267326); }
+        .express-icon { background: linear-gradient(135deg, #000000, #333333); }
+        .postgresql-icon { background: linear-gradient(135deg, #336791, #2a5678); }
+        .mongodb-icon { background: linear-gradient(135deg, #47a248, #3a8a3b); }
+        .git-icon { background: linear-gradient(135deg, #f05032, #d43a1c); }
+        .docker-icon { background: linear-gradient(135deg, #2496ed, #1d7bc4); }
+        .aws-icon { background: linear-gradient(135deg, #ff9900, #e68a00); }
+        .jest-icon { background: linear-gradient(135deg, #c21325, #a10f1f); }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2rem;
@@ -241,6 +275,10 @@
             .contact-links {
                 flex-direction: column;
                 gap: 10px;
+            }
+            
+            .skill-icons {
+                justify-content: center;
             }
         }
     </style>
@@ -271,39 +309,125 @@
             <div class="skills-grid">
                 <div class="skill-category">
                     <h3>Languages</h3>
-                    <ul class="skill-list">
-                        <li>JavaScript</li>
-                        <li>TypeScript</li>
-                        <li>Python</li>
-                        <li>Java</li>
-                    </ul>
+                    <div class="skill-icons">
+                        <div class="skill-icon">
+                            <div class="icon-badge js-icon">
+                                <i class="fab fa-js"></i>
+                            </div>
+                            <span class="icon-name">JavaScript</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge ts-icon">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <span class="icon-name">TypeScript</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge python-icon">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <span class="icon-name">Python</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge java-icon">
+                                <i class="fab fa-java"></i>
+                            </div>
+                            <span class="icon-name">Java</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="skill-category">
                     <h3>Frontend</h3>
-                    <ul class="skill-list">
-                        <li>React</li>
-                        <li>Next.js</li>
-                        <li>HTML/CSS</li>
-                        <li>Tailwind CSS</li>
-                    </ul>
+                    <div class="skill-icons">
+                        <div class="skill-icon">
+                            <div class="icon-badge react-icon">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <span class="icon-name">React</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge nextjs-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <span class="icon-name">Next.js</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge html-icon">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <span class="icon-name">HTML5</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge css-icon">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                            <span class="icon-name">CSS3</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge tailwind-icon">
+                                <i class="fas fa-palette"></i>
+                            </div>
+                            <span class="icon-name">Tailwind</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="skill-category">
                     <h3>Backend</h3>
-                    <ul class="skill-list">
-                        <li>Node.js</li>
-                        <li>Express</li>
-                        <li>PostgreSQL</li>
-                        <li>MongoDB</li>
-                    </ul>
+                    <div class="skill-icons">
+                        <div class="skill-icon">
+                            <div class="icon-badge node-icon">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <span class="icon-name">Node.js</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge express-icon">
+                                <i class="fas fa-server"></i>
+                            </div>
+                            <span class="icon-name">Express</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge postgresql-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <span class="icon-name">PostgreSQL</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge mongodb-icon">
+                                <i class="fas fa-leaf"></i>
+                            </div>
+                            <span class="icon-name">MongoDB</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="skill-category">
                     <h3>Tools</h3>
-                    <ul class="skill-list">
-                        <li>Git</li>
-                        <li>Docker</li>
-                        <li>AWS</li>
-                        <li>Jest</li>
-                    </ul>
+                    <div class="skill-icons">
+                        <div class="skill-icon">
+                            <div class="icon-badge git-icon">
+                                <i class="fab fa-git-alt"></i>
+                            </div>
+                            <span class="icon-name">Git</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge docker-icon">
+                                <i class="fab fa-docker"></i>
+                            </div>
+                            <span class="icon-name">Docker</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge aws-icon">
+                                <i class="fab fa-aws"></i>
+                            </div>
+                            <span class="icon-name">AWS</span>
+                        </div>
+                        <div class="skill-icon">
+                            <div class="icon-badge jest-icon">
+                                <i class="fas fa-vial"></i>
+                            </div>
+                            <span class="icon-name">Jest</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
