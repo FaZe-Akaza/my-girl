@@ -261,18 +261,73 @@
             gap: 25px;
         }
 
+        /* Project Card with RGB Glow Effect */
         .project-card {
             background: rgba(42, 42, 42, 0.5);
             border-radius: 10px;
             overflow: hidden;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
             border: 1px solid #333;
+            position: relative;
+            isolation: isolate;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 10px;
+            padding: 2px;
+            background: linear-gradient(
+                45deg,
+                #ff0000,
+                #ff8000,
+                #ffff00,
+                #00ff00,
+                #00ffff,
+                #0000ff,
+                #8000ff,
+                #ff0080,
+                #ff0000
+            );
+            background-size: 400% 400%;
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            opacity: 0;
+            transition: opacity 0.4s ease, background-position 0.6s ease;
+            z-index: -1;
+            animation: rgb-flow 3s linear infinite;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            border-color: #4a4a4a;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border-color: transparent;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+            background-position: 100% 100%;
+        }
+
+        @keyframes rgb-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .project-img {
@@ -284,10 +339,17 @@
             justify-content: center;
             color: #666;
             font-size: 2.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .project-card:hover .project-img {
+            background: linear-gradient(45deg, #1a1a1a, #222);
         }
 
         .project-content {
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .project-title {
@@ -295,6 +357,11 @@
             margin-bottom: 10px;
             font-weight: 500;
             color: #ffffff;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover .project-title {
+            color: #4a9eff;
         }
 
         .project-description {
@@ -318,6 +385,13 @@
             font-size: 0.8rem;
             color: #4a9eff;
             border: 1px solid rgba(74, 158, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .tech-tag {
+            background: rgba(74, 158, 255, 0.2);
+            border-color: rgba(74, 158, 255, 0.4);
+            transform: scale(1.05);
         }
 
         .project-links {
