@@ -3,122 +3,682 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Kamweru - Software Engineer</title>
-    <link rel="stylesheet" href="style.css">
-    <!-- Link to Font Awesome for Icons -->
+    <title>Michael Kamweru | Interactive Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #8BC6EC 0%, #9599E2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .phone-container {
+            width: 360px;
+            height: 700px;
+            background: #1a1a2e;
+            border-radius: 40px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            position: relative;
+            border: 10px solid #222;
+        }
+
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #0f3460, #1a1a2e);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            color: white;
+            font-size: 14px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .home-screen {
+            padding: 20px;
+            height: calc(100% - 50px);
+        }
+
+        .time-display {
+            text-align: center;
+            color: white;
+            font-size: 50px;
+            font-weight: 300;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        .date-display {
+            text-align: center;
+            color: #a0a0c0;
+            font-size: 16px;
+            margin-bottom: 40px;
+        }
+
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .app-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .app-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .app-name {
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .app-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #1a1a2e;
+            padding: 50px 20px 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+            overflow-y: auto;
+        }
+
+        .app-screen.active {
+            transform: translateY(0);
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+        }
+
+        .app-title {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .app-content {
+            color: white;
+            line-height: 1.6;
+        }
+
+        .skill-item {
+            margin-bottom: 15px;
+        }
+
+        .skill-name {
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            border-radius: 4px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+
+        .project-title {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #4cc9f0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            font-size: 18px;
+        }
+
+        /* Game Styles */
+        .game-container {
+            text-align: center;
+        }
+
+        .game-title {
+            margin-bottom: 20px;
+            color: #4cc9f0;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 5px;
+            margin: 0 auto 20px;
+            width: 240px;
+            height: 240px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .cell {
+            background: #1a1a2e;
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .cell:hover {
+            background: #252547;
+        }
+
+        .game-info {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        .reset-button {
+            background: #4cc9f0;
+            color: #1a1a2e;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .reset-button:hover {
+            background: #3aa8d8;
+        }
+
+        .dock {
+            position: absolute;
+            bottom: 20px;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            padding: 0 20px;
+        }
+
+        .dock-app {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .dock-app:hover {
+            transform: scale(1.1);
+        }
+
+        /* App Colors */
+        .portfolio-app { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .skills-app { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .projects-app { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .game-app { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
+        .contact-app { background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); }
+        .music-app { background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); color: #333; }
+        .camera-app { background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%); color: #333; }
+        .browser-app { background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%); }
+
+        /* Skill bar colors */
+        .skill-html { background: linear-gradient(to right, #e44d26, #f16529); width: 90%; }
+        .skill-css { background: linear-gradient(to right, #264de4, #2965f1); width: 85%; }
+        .skill-js { background: linear-gradient(to right, #f0db4f, #d4bb03); width: 80%; }
+        .skill-react { background: linear-gradient(to right, #61dafb, #21a4c4); width: 75%; }
+        .skill-node { background: linear-gradient(to right, #68a063, #3c873a); width: 70%; }
+    </style>
 </head>
 <body>
-    <!-- Hero Section -->
-    <section id="hero">
-        <div class="container">
-            <img src="assets/headshot.jpg" alt="Michael Kamweru" class="headshot">
-            <h1>Michael Kamweru</h1>
-            <p class="tagline">Full-Stack Engineer Building Scalable Web Experiences</p>
-            <p class="summary">I transform complex problems into elegant, efficient code using modern technologies like React, Node.js, and Python.</p>
-            <div class="cta-buttons">
-                <a href="#projects" class="btn btn-primary">View My Work</a>
-                <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+    <div class="phone-container">
+        <div class="phone-screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>
+                    <i class="fas fa-signal"></i>
+                    <i class="fas fa-wifi" style="margin-left: 5px;"></i>
+                    <i class="fas fa-battery-three-quarters" style="margin-left: 5px;"></i>
+                </span>
             </div>
-        </div>
-    </section>
-
-    <!-- About Me -->
-    <section id="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>Hello! I'm Michael, a passionate software engineer based in [Your City/Country]. My journey began with a curiosity for how things work, which led me to the world of programming. I thrive on building applications that are not only functional but also provide a delightful user experience. When I'm not coding, you can find me [Your Hobby, e.g., exploring hiking trails, reading sci-fi novels, or contributing to open source].</p>
-        </div>
-    </section>
-
-    <!-- Skills -->
-    <section id="skills">
-        <div class="container">
-            <h2>Skills & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Languages</h3>
-                    <p>JavaScript, TypeScript, Python, Java</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Frontend</h3>
-                    <p>React, Next.js, HTML5, CSS3, Tailwind CSS</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Backend</h3>
-                    <p>Node.js, Express, PostgreSQL, MongoDB</p>
-                </div>
-                <div class="skill-category">
-                    <h3>Tools & Other</h3>
-                    <p>Git, Docker, AWS, Jest, Figma</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects -->
-    <section id="projects">
-        <div class="container">
-            <h2>Featured Projects</h2>
-            <div class="project-grid">
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <img src="assets/project1-screenshot.jpg" alt="Project Alpha Screenshot">
-                    <h3>Project Alpha</h3>
-                    <p>A full-stack e-commerce application with user authentication and payment processing.</p>
-                    <ul>
-                        <li>User registration & login system</li>
-                        <li>Product catalog & shopping cart</li>
-                        <li>Integrated Stripe payment gateway</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>React</span><span>Node.js</span><span>MongoDB</span>
+            
+            <div class="home-screen">
+                <div class="time-display" id="current-time">9:41</div>
+                <div class="date-display" id="current-date">Monday, June 10</div>
+                
+                <div class="app-grid">
+                    <div class="app-icon" data-app="portfolio">
+                        <div class="app-circle portfolio-app">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="app-name">About</div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://project-alpha-live.demo" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/michaelkamweru/project-alpha" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                    
+                    <div class="app-icon" data-app="skills">
+                        <div class="app-circle skills-app">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="app-name">Skills</div>
                     </div>
-                </div>
-
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <img src="assets/project2-screenshot.jpg" alt="TaskFlow App Screenshot">
-                    <h3>TaskFlow</h3>
-                    <p>A collaborative task management tool inspired by Trello.</p>
-                    <ul>
-                        <li>Drag-and-drop functionality</li>
-                        <li>Real-time updates with WebSockets</li>
-                        <li>Team and board management</li>
-                    </ul>
-                    <div class="tech-stack">
-                        <span>Next.js</span><span>Socket.io</span><span>PostgreSQL</span>
+                    
+                    <div class="app-icon" data-app="projects">
+                        <div class="app-circle projects-app">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <div class="app-name">Projects</div>
                     </div>
-                    <div class="project-links">
-                        <a href="https://taskflow-live.demo" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
-                        <a href="https://github.com/michaelkamweru/taskflow" target="_blank"><i class="fab fa-github"></i> Source Code</a>
+                    
+                    <div class="app-icon" data-app="game">
+                        <div class="app-circle game-app">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="app-name">Tic-Tac-Toe</div>
+                    </div>
+                    
+                    <div class="app-icon" data-app="contact">
+                        <div class="app-circle contact-app">
+                            <i class="fas fa-address-book"></i>
+                        </div>
+                        <div class="app-name">Contact</div>
+                    </div>
+                    
+                    <div class="app-icon">
+                        <div class="app-circle music-app">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="app-name">Music</div>
+                    </div>
+                    
+                    <div class="app-icon">
+                        <div class="app-circle camera-app">
+                            <i class="fas fa-camera"></i>
+                        </div>
+                        <div class="app-name">Camera</div>
+                    </div>
+                    
+                    <div class="app-icon">
+                        <div class="app-circle browser-app">
+                            <i class="fas fa-compass"></i>
+                        </div>
+                        <div class="app-name">Browser</div>
                     </div>
                 </div>
-                <!-- Add more project cards as needed -->
+                
+                <div class="dock">
+                    <div class="dock-app portfolio-app" data-app="portfolio">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="dock-app projects-app" data-app="projects">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="dock-app game-app" data-app="game">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="dock-app contact-app" data-app="contact">
+                        <i class="fas fa-address-book"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Portfolio App Screen -->
+            <div class="app-screen" id="portfolio-screen">
+                <div class="app-header">
+                    <button class="back-button"><i class="fas fa-chevron-left"></i></button>
+                    <h2 class="app-title">About Michael</h2>
+                </div>
+                <div class="app-content">
+                    <p>Hello! I'm Michael Kamweru, a passionate software engineer with a love for creating elegant solutions to complex problems.</p>
+                    <br>
+                    <p>I specialize in full-stack web development with technologies like React, Node.js, and Python. When I'm not coding, you can find me exploring new technologies, contributing to open source, or enjoying the outdoors.</p>
+                    <br>
+                    <p>My goal is to build software that makes a positive impact on people's lives while continuously growing as a developer.</p>
+                </div>
+            </div>
+            
+            <!-- Skills App Screen -->
+            <div class="app-screen" id="skills-screen">
+                <div class="app-header">
+                    <button class="back-button"><i class="fas fa-chevron-left"></i></button>
+                    <h2 class="app-title">My Skills</h2>
+                </div>
+                <div class="app-content">
+                    <div class="skill-item">
+                        <div class="skill-name">HTML/CSS</div>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-html"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-js"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">React</div>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-react"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Node.js</div>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-node"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Python</div>
+                        <div class="skill-bar">
+                            <div class="skill-level skill-css" style="width: 80%;"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">UI/UX Design</div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="background:linear-gradient(to right, #f5576c, #f093fb); width: 75%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Projects App Screen -->
+            <div class="app-screen" id="projects-screen">
+                <div class="app-header">
+                    <button class="back-button"><i class="fas fa-chevron-left"></i></button>
+                    <h2 class="app-title">My Projects</h2>
+                </div>
+                <div class="app-content">
+                    <div class="project-card">
+                        <h3 class="project-title">E-Commerce Platform</h3>
+                        <p>A full-stack e-commerce solution with React frontend and Node.js backend. Features user authentication, payment processing, and admin dashboard.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Task Management App</h3>
+                        <p>A collaborative task management tool with real-time updates, drag-and-drop functionality, and team management features.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Weather Dashboard</h3>
+                        <p>A responsive weather application that displays current conditions and forecasts using data from a third-party API.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3 class="project-title">Portfolio Website</h3>
+                        <p>A responsive portfolio website showcasing my projects and skills with a clean, modern design.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game App Screen -->
+            <div class="app-screen" id="game-screen">
+                <div class="app-header">
+                    <button class="back-button"><i class="fas fa-chevron-left"></i></button>
+                    <h2 class="app-title">Tic-Tac-Toe</h2>
+                </div>
+                <div class="app-content game-container">
+                    <div class="game-info" id="game-status">Player X's Turn</div>
+                    <div class="game-board" id="game-board">
+                        <div class="cell" data-cell-index="0"></div>
+                        <div class="cell" data-cell-index="1"></div>
+                        <div class="cell" data-cell-index="2"></div>
+                        <div class="cell" data-cell-index="3"></div>
+                        <div class="cell" data-cell-index="4"></div>
+                        <div class="cell" data-cell-index="5"></div>
+                        <div class="cell" data-cell-index="6"></div>
+                        <div class="cell" data-cell-index="7"></div>
+                        <div class="cell" data-cell-index="8"></div>
+                    </div>
+                    <button class="reset-button" id="reset-game">New Game</button>
+                </div>
+            </div>
+            
+            <!-- Contact App Screen -->
+            <div class="app-screen" id="contact-screen">
+                <div class="app-header">
+                    <button class="back-button"><i class="fas fa-chevron-left"></i></button>
+                    <h2 class="app-title">Contact Me</h2>
+                </div>
+                <div class="app-content">
+                    <div class="contact-item">
+                        <div class="contact-icon portfolio-app">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h3>Email</h3>
+                            <p>hello@michaelkamweru.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon projects-app">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h3>Phone</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon skills-app">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div>
+                            <h3>LinkedIn</h3>
+                            <p>linkedin.com/in/michaelkamweru</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon game-app">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <div>
+                            <h3>GitHub</h3>
+                            <p>github.com/michaelkamweru</p>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- Contact -->
-    <section id="contact">
-        <div class="container">
-            <h2>Get In Touch</h2>
-            <p>I'm currently looking for new opportunities. Whether you have a question, want to collaborate, or just say hi, my inbox is always open.</p>
-            <a href="mailto:hello@michaelkamweru.com" class="email-link">hello@michaelkamweru.com</a>
-            <div class="social-links">
-                <a href="https://linkedin.com/in/michaelkamweru" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                <a href="https://github.com/michaelkamweru" target="_blank"><i class="fab fa-github"></i></a>
-                <a href="assets/your-resume.pdf" download><i class="fas fa-file-download"></i> Resume</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <p>&copy; 2023 Michael Kamweru. Built with passion.</p>
-    </footer>
+    <script>
+        // Update time and date
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.getElementById('current-time');
+            const dateElement = document.getElementById('current-date');
+            
+            const timeOptions = { hour: '2-digit', minute: '2-digit' };
+            const dateOptions = { weekday: 'long', month: 'long', day: 'numeric' };
+            
+            timeElement.textContent = now.toLocaleTimeString([], timeOptions);
+            dateElement.textContent = now.toLocaleDateString([], dateOptions);
+            
+            // Update status bar time
+            document.querySelector('.status-bar span:first-child').textContent = now.toLocaleTimeString([], timeOptions);
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        // App navigation
+        const appIcons = document.querySelectorAll('.app-icon, .dock-app');
+        const appScreens = document.querySelectorAll('.app-screen');
+        const backButtons = document.querySelectorAll('.back-button');
+        
+        appIcons.forEach(icon => {
+            icon.addEventListener('click', function() {
+                const appName = this.getAttribute('data-app');
+                if (appName) {
+                    // Hide all app screens
+                    appScreens.forEach(screen => {
+                        screen.classList.remove('active');
+                    });
+                    
+                    // Show the selected app screen
+                    document.getElementById(`${appName}-screen`).classList.add('active');
+                }
+            });
+        });
+        
+        backButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Hide all app screens (return to home)
+                appScreens.forEach(screen => {
+                    screen.classList.remove('active');
+                });
+            });
+        });
+        
+        // Tic-Tac-Toe Game
+        const gameBoard = document.getElementById('game-board');
+        const gameStatus = document.getElementById('game-status');
+        const resetButton = document.getElementById('reset-game');
+        
+        let currentPlayer = 'X';
+        let gameState = ['', '', '', '', '', '', '', '', ''];
+        let gameActive = true;
+        
+        const winningConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], // rows
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
+            [0, 4, 8], [2, 4, 6]             // diagonals
+        ];
+        
+        function handleCellClick(e) {
+            const clickedCell = e.target;
+            const cellIndex = parseInt(clickedCell.getAttribute('data-cell-index'));
+            
+            if (gameState[cellIndex] !== '' || !gameActive) {
+                return;
+            }
+            
+            gameState[cellIndex] = currentPlayer;
+            clickedCell.textContent = currentPlayer;
+            
+            if (currentPlayer === 'X') {
+                clickedCell.style.color = '#4cc9f0';
+            } else {
+                clickedCell.style.color = '#f72585';
+            }
+            
+            checkResult();
+        }
+        
+        function checkResult() {
+            let roundWon = false;
+            
+            for (let i = 0; i < winningConditions.length; i++) {
+                const [a, b, c] = winningConditions[i];
+                if (gameState[a] && gameState[a] === gameState[b] && gameState[a] === gameState[c]) {
+                    roundWon = true;
+                    break;
+                }
+            }
+            
+            if (roundWon) {
+                gameStatus.textContent = `Player ${currentPlayer} Wins!`;
+                gameActive = false;
+                return;
+            }
+            
+            if (!gameState.includes('')) {
+                gameStatus.textContent = "Game ended in a draw!";
+                gameActive = false;
+                return;
+            }
+            
+            currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+            gameStatus.textContent = `Player ${currentPlayer}'s Turn`;
+        }
+        
+        function resetGame() {
+            currentPlayer = 'X';
+            gameState = ['', '', '', '', '', '', '', '', ''];
+            gameActive = true;
+            gameStatus.textContent = `Player ${currentPlayer}'s Turn`;
+            
+            document.querySelectorAll('.cell').forEach(cell => {
+                cell.textContent = '';
+            });
+        }
+        
+        gameBoard.addEventListener('click', handleCellClick);
+        resetButton.addEventListener('click', resetGame);
+    </script>
 </body>
 </html>
